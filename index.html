@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureWipe Pro - Secure Data Wiping & Compliance Certificates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #334155;
-            background-color: #f8fafc;
-            min-height: 100vh;
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --card-hover: #252525;
+            --primary: #10b981;
+            --primary-dark: #0d9488;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #bb86fc;
         }
         
-        /* Layout */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(18, 18, 18, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -29,11 +43,12 @@
         
         /* Header */
         header {
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: rgba(10, 10, 10, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
         
         .header-content {
@@ -52,7 +67,7 @@
         .logo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -68,7 +83,7 @@
         
         .logo-text p {
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
         }
         
         nav {
@@ -79,30 +94,46 @@
         
         nav a {
             text-decoration: none;
-            color: #475569;
+            color: var(--text-muted);
             font-size: 14px;
             transition: color 0.3s;
+            position: relative;
         }
         
         nav a:hover {
-            color: #0f172a;
+            color: var(--text);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
         }
         
         .nav-button {
-            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
             border-radius: 9999px;
             padding: 8px 16px;
             font-size: 14px;
             cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: all 0.3s;
         }
         
         .nav-button:hover {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
         }
         
         /* Hero Section */
@@ -124,13 +155,16 @@
             font-size: 36px;
             font-weight: 800;
             line-height: 1.2;
-            color: #0f172a;
+            color: var(--text);
             margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--text), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .hero-content p {
             font-size: 18px;
-            color: #64748b;
+            color: var(--text-muted);
             margin-bottom: 30px;
         }
         
@@ -142,7 +176,7 @@
         }
         
         .primary-button {
-            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             text-decoration: none;
             padding: 12px 20px;
@@ -150,18 +184,18 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: all 0.3s;
         }
         
         .primary-button:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
         }
         
         .secondary-button {
-            border: 1px solid #e2e8f0;
-            color: #374151;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
             text-decoration: none;
             padding: 12px 20px;
             border-radius: 8px;
@@ -169,10 +203,12 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .secondary-button:hover {
-            background-color: #f1f5f9;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
         }
         
         .features-list {
@@ -192,42 +228,37 @@
             align-items: flex-start;
             gap: 8px;
             font-size: 14px;
-            color: #475569;
+            color: var(--text-muted);
         }
         
         .features-list li span {
-            color: #10b981;
+            color: var(--primary);
             font-weight: 600;
         }
         
-        .video-container {
-            background-color: white;
+        .illustration-container {
+            background-color: var(--card-bg);
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
         }
         
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
-            background-color: #000;
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .illustration-wrapper {
             width: 100%;
             height: 100%;
-            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
-        .video-caption {
+        .illustration-caption {
             font-size: 12px;
-            color: #64748b;
+            color: var(--text-muted);
             text-align: center;
             margin-top: 12px;
         }
@@ -240,8 +271,21 @@
         .section-title {
             font-size: 24px;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--text);
             margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
         }
         
         .features-grid {
@@ -257,49 +301,104 @@
         }
         
         .feature-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             padding: 24px;
             transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(187, 134, 252, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .feature-card.active {
+            background-color: var(--card-hover);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 20px;
-            margin-bottom: 16px;
+            font-size: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
         }
         
         .feature-card h4 {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 12px;
-            color: #0f172a;
+            color: var(--text);
+            transition: all 0.3s;
         }
         
         .feature-card p {
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+        
+        .feature-card .step-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 48px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .step-number {
+            color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.2);
         }
         
         /* Verification Section */
         .verification {
-            background: linear-gradient(to bottom, white, #f8fafc);
-            border-radius: 12px;
+            background: linear-gradient(135deg, var(--card-bg), var(--darker-bg));
+            border-radius: 16px;
             padding: 40px;
             margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
         .verification-grid {
@@ -316,39 +415,42 @@
         }
         
         .sample-card, .verify-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .sample-card h4, .verify-card h4 {
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 16px;
-            color: #0f172a;
+            color: var(--text);
         }
         
         pre {
-            background-color: #f8fafc;
-            border-radius: 6px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
             padding: 16px;
             overflow: auto;
             font-size: 12px;
-            color: #334155;
+            color: var(--text);
             line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .verification-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: #ecfdf5;
-            color: #065f46;
-            padding: 8px 12px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+            color: var(--primary);
+            padding: 8px 16px;
             border-radius: 6px;
             font-weight: 600;
             margin: 16px 0;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
         
         .verify-input {
@@ -359,19 +461,34 @@
         
         .verify-input input {
             flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
+            padding: 10px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: var(--text);
+            transition: all 0.3s;
+        }
+        
+        .verify-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
         
         .verify-input button {
-            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
+            border-radius: 8px;
+            padding: 10px 20px;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .verify-input button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
         }
         
         /* Footer Section */
@@ -389,46 +506,52 @@
         }
         
         .footer-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             padding: 24px;
             transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
         }
         
         .footer-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(16, 185, 129, 0.2);
         }
         
         .footer-card h5 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 12px;
-            color: #0f172a;
+            color: var(--text);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
         
         .footer-card p {
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
         }
         
         .footer-card a {
-            color: #10b981;
+            color: var(--primary);
             text-decoration: none;
+            transition: all 0.3s;
         }
         
         .footer-card a:hover {
+            color: var(--accent);
             text-decoration: underline;
         }
         
         /* Actual Footer */
         footer {
-            background-color: white;
-            border-top: 1px solid #e2e8f0;
+            background-color: var(--darker-bg);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 24px 0;
             margin-top: 60px;
         }
@@ -440,7 +563,7 @@
             gap: 12px;
             text-align: center;
             font-size: 14px;
-            color: #64748b;
+            color: var(--text-muted);
         }
         
         @media (min-width: 768px) {
@@ -452,11 +575,13 @@
         }
         
         footer a {
-            color: #10b981;
+            color: var(--primary);
             text-decoration: none;
+            transition: all 0.3s;
         }
         
         footer a:hover {
+            color: var(--accent);
             text-decoration: underline;
         }
         
@@ -466,7 +591,7 @@
             background: none;
             border: none;
             font-size: 24px;
-            color: #475569;
+            color: var(--text);
             cursor: pointer;
         }
         
@@ -481,15 +606,94 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background-color: white;
+                background-color: var(--darker-bg);
                 padding: 20px;
                 flex-direction: column;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                gap: 15px;
             }
             
             nav.active {
                 display: flex;
             }
+        }
+        
+        /* Animation for feature cards */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Interactive animation for steps */
+        .step-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .feature-card.active .step-content {
+            max-height: 500px;
+        }
+        
+        /* Animation for the illustration */
+        @keyframes wipe {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes appear {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .disk {
+            width: 150px;
+            height: 150px;
+            background: conic-gradient(
+                #10b981 0% 20%,
+                #0d9488 20% 40%,
+                #0f766e 40% 60%,
+                #115e59 60% 80%,
+                #134e4a 80% 100%
+            );
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+        
+        .wipe-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: wipe 3s infinite linear;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 40px;
+            opacity: 0;
+            animation: appear 0.5s 1.5s forwards;
+        }
+        
+        .illustration-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -525,11 +729,11 @@
                 <p>SecureWipe Pro provides audited, certificate-backed data erasure for devices and media. Generate tamper-proof e-certificates for every wipe, verify them publicly, and stay compliant with retention policies.</p>
                 
                 <div class="hero-buttons">
-                    <a href="#demo" class="primary-button">
-                        <span>▶</span> Watch Demo
+                    <a href="#features" class="primary-button">
+                        <i class="fas fa-play-circle"></i> See How It Works
                     </a>
                     <a href="#verify" class="secondary-button">
-                        <span>🔍</span> Verify a Certificate
+                        <i class="fas fa-search"></i> Verify a Certificate
                     </a>
                 </div>
                 
@@ -541,11 +745,14 @@
                 </ul>
             </div>
             
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/MYGQgeu1ZZI" title="SecureWipe Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="illustration-container">
+                <div class="illustration-wrapper">
+                    <div class="disk">
+                        <div class="wipe-animation"></div>
+                        <div class="checkmark">✓</div>
+                    </div>
                 </div>
-                <p class="video-caption">Demo video — watch how SecureWipe generates compliance certificates and verification flows.</p>
+                <p class="illustration-caption">Visualization of secure data wiping process with verification</p>
             </div>
         </section>
         
@@ -554,13 +761,196 @@
             <h3 class="section-title">How it works</h3>
             
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🧹</div>
-                    <h4>1. Wipe & Log</h4>
-                    <p>Run secure wipe using NIST/DoD methods. Capture device metadata and a cryptographic hash of the wiped media.</p>
+                <div class="feature-card" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-eraser"></i>
+                    </div>
+                    <h4>Wipe & Log</h4>
+                    <div class="step-content">
+                        <p>Run secure wipe using NIST/DoD methods. Capture device metadata and a cryptographic hash of the wiped media.</p>
+                        <div class="pulse" style="width: 100%; height: 2px; background: var(--primary); margin-top: 15px;"></div>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h4>2. Sign Certificate</h4>
-                    <p>Issuer signs the canonical certificate (JSON/PDF) using the private key (ECDSA P-256). Signature is saved as sidecar
+                <div class="feature-card" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-signature"></i>
+                    </div>
+                    <h4>Sign Certificate</h4>
+                    <div class="step-content">
+                        <p>Issuer signs the canonical certificate (JSON/PDF) using the private key (ECDSA P-256). Signature is saved as sidecar and embedded metadata.</p>
+                        <div class="pulse" style="width: 100%; height: 2px; background: var(--primary); margin-top: 15px;"></div>
+                    </div>
+                </div>
+                
+                <div class="feature-card" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>Verify Publicly</h4>
+                    <div class="step-content">
+                        <p>A QR on the PDF links to a public verifier endpoint that checks signature, timestamp, and revocation list — instantly proving authenticity.</p>
+                        <div class="pulse" style="width: 100%; height: 2px; background: var(--primary); margin-top: 15px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Verification Section -->
+        <section id="verify" class="verification">
+            <h3 class="section-title">Try verification</h3>
+            <p>Paste a certificate JSON or upload a PDF to verify its signature. For demo, we include a sample certificate below you can inspect.</p>
+            
+            <div class="verification-grid">
+                <div class="sample-card">
+                    <h4>Sample certificate (canonical JSON)</h4>
+                    <pre>{
+  "serial": "DEMO-001",
+  "device_id": "SN-12345678",
+  "wiped_at": "2025-09-13T10:00:00Z",
+  "method": "DoD 5220.22-M",
+  "issuer": "SecureWipe Ltd"
+}</pre>
+                </div>
+                
+                <div class="verify-card">
+                    <h4>Verification</h4>
+                    <p>In a real deployment, the server would fetch the issuer public key and verify the signature. Demo: the green badge below indicates a simulated valid signature.</p>
+                    
+                    <div class="verification-badge">
+                        <i class="fas fa-check-circle"></i> Signature Valid
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted);">serial: DEMO-001</div>
+                    
+                    <div>
+                        <label style="display: block; font-size: 12px; color: var(--text-muted); margin-top: 20px;">Verify a real certificate</label>
+                        <div class="verify-input">
+                            <input type="text" placeholder="Paste certificate JSON or URL...">
+                            <button>Verify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer Cards -->
+        <div class="footer-cards">
+            <div class="footer-card">
+                <h5><i class="fas fa-file-contract"></i> Compliance</h5>
+                <p>Keep auditable records and export CSV/JSON for audits.</p>
+            </div>
+            
+            <div class="footer-card">
+                <h5><i class="fas fa-plug"></i> Integrations</h5>
+                <p>Cloud KMS, HSM, REST API, S3 export, and blockchain anchoring available.</p>
+            </div>
+            
+            <div class="footer-card">
+                <h5><i class="fas fa-headset"></i> Support</h5>
+                <p>Contact us at <a href="mailto:hello@securewipe.example">hello@securewipe.example</a></p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>© <span id="current-year">2023</span> SecureWipe Ltd</div>
+                <div>All rights reserved • No external dependencies</div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && !e.target.closest('.mobile-menu-btn')) {
+                mainNav.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mainNav.classList.remove('active');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simple verification simulation
+        document.querySelector('.verify-input button').addEventListener('click', function() {
+            const input = document.querySelector('.verify-input input');
+            if (input.value.trim() !== '') {
+                alert('In a real implementation, this would verify the certificate signature against the issuer public key.');
+            } else {
+                alert('Please enter a certificate JSON or URL to verify.');
+            }
+        });
+        
+        // Interactive feature cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        
+        featureCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove active class from all cards
+                featureCards.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked card
+                card.classList.add('active');
+                
+                // Auto-advance to next card after 3 seconds
+                clearTimeout(window.cardAdvanceTimer);
+                window.cardAdvanceTimer = setTimeout(() => {
+                    const nextCard = card.nextElementSibling || featureCards[0];
+                    if (nextCard) {
+                        nextCard.click();
+                    }
+                }, 3000);
+            });
+        });
+        
+        // Auto-cycle through feature cards
+        let currentCardIndex = 0;
+        
+        function cycleFeatureCards() {
+            featureCards.forEach(card => card.classList.remove('active'));
+            featureCards[currentCardIndex].classList.add('active');
+            
+            currentCardIndex = (currentCardIndex + 1) % featureCards.length;
+        }
+        
+        // Start auto-cycling
+        setInterval(cycleFeatureCards, 4000);
+        
+        // Initialize first card as active
+        featureCards[0].classList.add('active');
+    </script>
+</body>
+</html>

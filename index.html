@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureWipe Pro - Secure Data Wiping & Compliance Certificates</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">SW</div>
+                    <div class="logo-text">
+                        <h1>SecureWipe Pro</h1>
+                        <p>Secure Data Wiping · Compliance Certificates</p>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn">☰</button>
+                
+                <nav id="main-nav">
+                    <a href="#features">Features</a>
+                    <a href="#demo">Demo</a>
+                    <a href="#verify">Verify</a>
+                    <button class="nav-button">Get Started</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Wipe data securely — prove compliance instantly.</h2>
+                <p>SecureWipe Pro provides audited, certificate-backed data erasure for devices and media. Generate tamper-proof e-certificates for every wipe, verify them publicly, and stay compliant with retention policies.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#demo" class="primary-button">
+                        <span>▶</span> Watch Demo
+                    </a>
+                    <a href="#verify" class="secondary-button">
+                        <span>🔍</span> Verify a Certificate
+                    </a>
+                </div>
+                
+                <ul class="features-list">
+                    <li><span>•</span> Proven cryptographic signatures (ECDSA P-256)</li>
+                    <li><span>•</span> PDF & JSON certificates with QR verification</li>
+                    <li><span>•</span> Timestamping & revocation lists</li>
+                    <li><span>•</span> HSM / KMS friendly key management</li>
+                </ul>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/MYGQgeu1ZZI" title="SecureWipe Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="video-caption">Demo video — watch how SecureWipe generates compliance certificates and verification flows.</p>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <h3 class="section-title">How it works</h3>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧹</div>
+                    <h4>1. Wipe & Log</h4>
+                    <p>Run secure wipe using NIST/DoD methods. Capture device metadata and a cryptographic hash of the wiped media.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h4>2. Sign Certificate</h4>
+                    <p>Issuer signs the canonical certificate (JSON/PDF) using the private key (ECDSA P-256). Signature is saved as sidecar and embedded metadata.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h4>3. Verify Publicly</h4>
+                    <p>A QR on the PDF links to a public verifier endpoint that checks signature, timestamp, and revocation list — instantly proving authenticity.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Verification Section -->
+        <section id="verify" class="verification">
+            <h3 class="section-title">Try verification</h3>
+            <p>Paste a certificate JSON or upload a PDF to verify its signature. For demo, we include a sample certificate below you can inspect.</p>
+            
+            <div class="verification-grid">
+                <div class="sample-card">
+                    <h4>Sample certificate (canonical JSON)</h4>
+                    <pre>{
+  "serial": "DEMO-001",
+  "device_id": "SN-12345678",
+  "wiped_at": "2025-09-13T10:00:00Z",
+  "method": "DoD 5220.22-M",
+  "issuer": "SecureWipe Ltd"
+}</pre>
+                </div>
+                
+                <div class="verify-card">
+                    <h4>Verification</h4>
+                    <p>In a real deployment, the server would fetch the issuer public key and verify the signature. Demo: the green badge below indicates a simulated valid signature.</p>
+                    
+                    <div class="verification-badge">
+                        <span>✓</span> Signature Valid
+                    </div>
+                    <div style="font-size: 12px; color: #64748b;">serial: DEMO-001</div>
+                    
+                    <div>
+                        <label style="display: block; font-size: 12px; color: #64748b; margin-top: 20px;">Verify a real certificate</label>
+                        <div class="verify-input">
+                            <input type="text" placeholder="Paste certificate JSON or URL...">
+                            <button>Verify</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer Cards -->
+        <div class="footer-cards">
+            <div class="footer-card">
+                <h5>📋 Compliance</h5>
+                <p>Keep auditable records and export CSV/JSON for audits.</p>
+            </div>
+            
+            <div class="footer-card">
+                <h5>🔌 Integrations</h5>
+                <p>Cloud KMS, HSM, REST API, S3 export, and blockchain anchoring available.</p>
+            </div>
+            
+            <div class="footer-card">
+                <h5>📞 Support</h5>
+                <p>Contact us at <a href="mailto:hello@securewipe.example">hello@securewipe.example</a></p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>© <span id="current-year">2023</span> SecureWipe Ltd</div>
+                <div>Built for demo • Video: <a href="https://youtu.be/MYGQgeu1ZZI" target="_blank">Watch on YouTube</a></div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

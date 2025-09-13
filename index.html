@@ -4,7 +4,494 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureWipe Pro - Secure Data Wiping & Compliance Certificates</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #334155;
+            background-color: #f8fafc;
+            min-height: 100vh;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .logo-text h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .logo-text p {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #0f172a;
+        }
+        
+        .nav-button {
+            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .nav-button:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        @media (min-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+        
+        .hero-content h2 {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .primary-button {
+            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .primary-button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .secondary-button {
+            border: 1px solid #e2e8f0;
+            color: #374151;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        @media (min-width: 640px) {
+            .features-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+            color: #475569;
+        }
+        
+        .features-list li span {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .video-container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: #000;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-caption {
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        /* Features Section */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 30px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        /* Verification Section */
+        .verification {
+            background: linear-gradient(to bottom, white, #f8fafc);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        
+        .verification-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        @media (min-width: 1024px) {
+            .verification-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .sample-card, .verify-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+        }
+        
+        .sample-card h4, .verify-card h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+        
+        pre {
+            background-color: #f8fafc;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            font-size: 12px;
+            color: #334155;
+            line-height: 1.5;
+        }
+        
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #ecfdf5;
+            color: #065f46;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 16px 0;
+        }
+        
+        .verify-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .verify-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .verify-input button {
+            background: linear-gradient(to bottom right, #10b981, #0d9488);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        
+        /* Footer Section */
+        .footer-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin: 60px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-cards {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        
+        .footer-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            transition: all 0.3s;
+        }
+        
+        .footer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-card h5 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .footer-card a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        .footer-card a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Actual Footer */
+        footer {
+            background-color: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 24px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+        
+        footer a {
+            color: #10b981;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #475569;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                padding: 20px;
+                flex-direction: column;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                display: flex;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -76,82 +563,4 @@
                 <div class="feature-card">
                     <div class="feature-icon">📝</div>
                     <h4>2. Sign Certificate</h4>
-                    <p>Issuer signs the canonical certificate (JSON/PDF) using the private key (ECDSA P-256). Signature is saved as sidecar and embedded metadata.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <h4>3. Verify Publicly</h4>
-                    <p>A QR on the PDF links to a public verifier endpoint that checks signature, timestamp, and revocation list — instantly proving authenticity.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Verification Section -->
-        <section id="verify" class="verification">
-            <h3 class="section-title">Try verification</h3>
-            <p>Paste a certificate JSON or upload a PDF to verify its signature. For demo, we include a sample certificate below you can inspect.</p>
-            
-            <div class="verification-grid">
-                <div class="sample-card">
-                    <h4>Sample certificate (canonical JSON)</h4>
-                    <pre>{
-  "serial": "DEMO-001",
-  "device_id": "SN-12345678",
-  "wiped_at": "2025-09-13T10:00:00Z",
-  "method": "DoD 5220.22-M",
-  "issuer": "SecureWipe Ltd"
-}</pre>
-                </div>
-                
-                <div class="verify-card">
-                    <h4>Verification</h4>
-                    <p>In a real deployment, the server would fetch the issuer public key and verify the signature. Demo: the green badge below indicates a simulated valid signature.</p>
-                    
-                    <div class="verification-badge">
-                        <span>✓</span> Signature Valid
-                    </div>
-                    <div style="font-size: 12px; color: #64748b;">serial: DEMO-001</div>
-                    
-                    <div>
-                        <label style="display: block; font-size: 12px; color: #64748b; margin-top: 20px;">Verify a real certificate</label>
-                        <div class="verify-input">
-                            <input type="text" placeholder="Paste certificate JSON or URL...">
-                            <button>Verify</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer Cards -->
-        <div class="footer-cards">
-            <div class="footer-card">
-                <h5>📋 Compliance</h5>
-                <p>Keep auditable records and export CSV/JSON for audits.</p>
-            </div>
-            
-            <div class="footer-card">
-                <h5>🔌 Integrations</h5>
-                <p>Cloud KMS, HSM, REST API, S3 export, and blockchain anchoring available.</p>
-            </div>
-            
-            <div class="footer-card">
-                <h5>📞 Support</h5>
-                <p>Contact us at <a href="mailto:hello@securewipe.example">hello@securewipe.example</a></p>
-            </div>
-        </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>© <span id="current-year">2023</span> SecureWipe Ltd</div>
-                <div>Built for demo • Video: <a href="https://youtu.be/MYGQgeu1ZZI" target="_blank">Watch on YouTube</a></div>
-            </div>
-        </div>
-    </footer>
-    
-    <script src="js/script.js"></script>
-</body>
-</html>
+                    <p>Issuer signs the canonical certificate (JSON/PDF) using the private key (ECDSA P-256). Signature is saved as sidecar
